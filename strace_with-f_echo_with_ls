@@ -1,0 +1,24 @@
+root@Boss-09:45:08/~# strace -f -e trace=process bash -c 'echo list=$(ls)'
+execve("/bin/bash", ["bash", "-c", "echo list=$(ls)"], [/* 23 vars */]) = 0
+arch_prctl(ARCH_SET_FS, 0x7f53b4556740) = 0
+clone(Process 12080 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f53b4556a10) = 12080
+[pid 12080] clone(Process 12081 attached
+child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f53b4556a10) = 12081
+[pid 12081] execve("/bin/ls", ["ls"], [/* 22 vars */] <unfinished ...>
+[pid 12080] wait4(-1,  <unfinished ...>
+[pid 12081] <... execve resumed> )      = 0
+[pid 12081] arch_prctl(ARCH_SET_FS, 0x7f1e92d80840) = 0
+[pid 12081] exit_group(0)               = ?
+[pid 12081] +++ exited with 0 +++
+[pid 12080] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 12081
+[pid 12080] --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12081, si_status=0, si_utime=0, si_stime=0} ---
+[pid 12080] wait4(-1, 0x7fff24216bd8, WNOHANG, NULL) = -1 ECHILD (No child processes)
+[pid 12080] exit_group(0)               = ?
+[pid 12080] +++ exited with 0 +++
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12080, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 12080
+wait4(-1, 0x7fff24216e98, WNOHANG, NULL) = -1 ECHILD (No child processes)
+list=Desktop file-link HISTORY perf.data perf.data.old sdb.blktrace.0 sdb.blktrace.1 sdb.blktrace.2 understand_this.txt
+exit_group(0)                           = ?
++++ exited with 0 +++
