@@ -1,0 +1,45 @@
+root@Boss-09:55:46/~# { strace -p "$$" & sleep 1; echo list=$(ls) ; kill "%1"; }
+[1] 12471
+Process 12444 attached
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WSTOPPED|WCONTINUED, NULL) = 12472
+rt_sigprocmask(SIG_BLOCK, [CHLD TSTP TTIN TTOU], [CHLD], 8) = 0
+ioctl(255, SNDRV_TIMER_IOCTL_SELECT or TIOCSPGRP, [12444]) = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+ioctl(255, SNDCTL_TMR_TIMEBASE or SNDRV_TIMER_IOCTL_NEXT_DEVICE or TCGETS, {B38400 opost isig icanon echo ...}) = 0
+ioctl(255, TIOCGWINSZ, {ws_row=86, ws_col=315, ws_xpixel=0, ws_ypixel=0}) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12472, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, 0x7fff1cebf6d8, WNOHANG|WSTOPPED|WCONTINUED, NULL) = 0
+rt_sigreturn()                          = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+pipe([3, 4])                            = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [INT CHLD], [], 8) = 0
+pipe([5, 6])                            = 0
+clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f9f463a8a10) = 12475
+setpgid(12475, 12444)                   = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigaction(SIGCHLD, {0x446380, [], SA_RESTORER|SA_RESTART, 0x7f9f459e0c30}, {0x446380, [], SA_RESTORER|SA_RESTART, 0x7f9f459e0c30}, 8) = 0
+close(5)                                = 0
+close(6)                                = 0
+close(4)                                = 0
+read(3, "Desktop\nfile-link\nHISTORY\nperf.d"..., 128) = 115
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12475, si_status=0, si_utime=0, si_stime=0} ---
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG|WSTOPPED|WCONTINUED, NULL) = 12475
+wait4(-1, 0x7fff1cebf458, WNOHANG|WSTOPPED|WCONTINUED, NULL) = 0
+rt_sigreturn()                          = 115
+read(3, "", 128)                        = 0
+close(3)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD TSTP TTIN TTOU], [CHLD], 8) = 0
+ioctl(255, SNDRV_TIMER_IOCTL_SELECT or TIOCSPGRP, [12444]) = 0
+rt_sigprocmask(SIG_SETMASK, [CHLD], NULL, 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+write(1, "list=Desktop file-link HISTORY p"..., 120list=Desktop file-link HISTORY perf.data perf.data.old sdb.blktrace.0 sdb.blktrace.1 sdb.blktrace.2 understand_this.txt
+) = 120
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+kill(4294954825, SIGTERMProcess 12444 detached
+ <detached ...>
