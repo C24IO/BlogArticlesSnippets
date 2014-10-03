@@ -1,27 +1,135 @@
-root@Boss-10:21:18/~# strace -s 2000 -f -e trace=process bash -c 'echo list=$(ls)'
+root@Boss-10:31:50/~# strace -s 2000 -f bash -c 'cd'
 
-
-execve("/bin/bash", ["bash", "-c", "echo list=$(ls)"], [/* 23 vars */]) = 0
-arch_prctl(ARCH_SET_FS, 0x7f4648542740) = 0
-clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f4648542a10) = 12921
-Process 12921 attached
-[pid 12921] clone(child_stack=0, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD, child_tidptr=0x7f4648542a10) = 12922
-Process 12922 attached
-[pid 12922] execve("/bin/ls", ["ls"], [/* 22 vars */] <unfinished ...>
-[pid 12921] wait4(-1,  <unfinished ...>
-[pid 12922] <... execve resumed> )      = 0
-[pid 12922] arch_prctl(ARCH_SET_FS, 0x7fa9f9dea840) = 0
-[pid 12922] exit_group(0)               = ?
-[pid 12922] +++ exited with 0 +++
-[pid 12921] <... wait4 resumed> [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], 0, NULL) = 12922
-[pid 12921] --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12922, si_status=0, si_utime=0, si_stime=0} ---
-[pid 12921] wait4(-1, 0x7fff44fca598, WNOHANG, NULL) = -1 ECHILD (No child processes)
-[pid 12921] exit_group(0)               = ?
-[pid 12921] +++ exited with 0 +++
---- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=12921, si_status=0, si_utime=0, si_stime=0} ---
-wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG, NULL) = 12921
-wait4(-1, 0x7fff44fca858, WNOHANG, NULL) = -1 ECHILD (No child processes)
-list=Desktop file-link HISTORY perf.data perf.data.old sdb.blktrace.0 sdb.blktrace.1 sdb.blktrace.2 understand_this.txt
+execve("/bin/bash", ["bash", "-c", "cd"], [/* 23 vars */]) = 0
+brk(0)                                  = 0x2682000
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f8f981bb000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=73142, ...}) = 0
+mmap(NULL, 73142, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f8f981a9000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/x86_64-linux-gnu/libtinfo.so.5", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\320\303\0\0\0\0\0\0@\0\0\0\0\0\0\0\370\205\2\0\0\0\0\0\0\0\0\0@\0008\0\7\0@\0\33\0\32\0\1\0\0\0\5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\354C\2\0\0\0\0\0\354C\2\0\0\0\0\0\0\0 \0\0\0\0\0\1\0\0\0\6\0\0\0\230M\2\0\0\0\0\0\230M\"\0\0\0\0\0\230M\"\0\0\0\0\0P7\0\0\0\0\0\0H?\0\0\0\0\0\0\0\0 \0\0\0\0\0\2\0\0\0\6\0\0\0(}\2\0\0\0\0\0(}\"\0\0\0\0\0(}\"\0\0\0\0\0\320\1\0\0\0\0\0\0\320\1\0\0\0\0\0\0\10\0\0\0\0\0\0\0\4\0\0\0\4\0\0\0\310\1\0\0\0\0\0\0\310\1\0\0\0\0\0\0\310\1\0\0\0\0\0\0$\0\0\0\0\0\0\0$\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0P\345td\4\0\0\0H\36\2\0\0\0\0\0H\36\2\0\0\0\0\0H\36\2\0\0\0\0\0\224\5\0\0\0\0\0\0\224\5\0\0\0\0\0\0\4\0\0\0\0\0\0\0Q\345td\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0R\345td\4\0\0\0\230M\2\0\0\0\0\0\230M\"\0\0\0\0\0\230M\"\0\0\0\0\0h2\0\0\0\0\0\0h2\0\0\0\0\0\0\1\0\0\0\0\0\0\0\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\0N=\261\177\10%\27\260L\3075\16\352\366\360\212H\350\3\0\0\0\0\203\0\0\0;\0\0\0\20\0\0\0\n\0\0\0B\23\0\20\2\230\0\204\200\21\220\30\2 \26\270a\0\4\0\31\20\2408]\2625}q\6\204\312\250W\27\345z\306&@\212\343\6h\0\20H*R$!,\f\203 E(\31\0\25\22\220 \24!\10H`\252 \4\t\36\4`\21\201\301b!\301\1\212P\33\32b@\4\220\0\0\246\304\1\25P\307HyI\1\256\10\20\300\31\16\341\v\2A\272\224\244\312+(2)4d\317)\0\16\276@;\0\0\0<\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0>\0\0\0?\0\0\0A\0\0\0B\0\0\0\0\0\0\0D\0\0\0G\0\0\0I\0\0\0J\0\0\0K\0\0\0M\0\0\0\0\0\0\0N\0\0\0\0\0\0\0Q\0\0\0S\0\0\0W\0\0\0Z\0\0\0[\0\0\0]\0\0\0^\0\0\0b\0\0\0c\0\0\0d\0\0\0f\0\0\0g\0\0\0h\0\0\0\0\0\0\0\0\0\0\0k\0\0\0r\0\0\0s\0\0\0\0\0\0\0v\0\0\0x\0\0\0\0\0\0\0y\0\0\0z\0\0\0{\0\0\0~\0\0\0\177\0\0\0\0\0\0\0", 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=167096, ...}) = 0
+mmap(NULL, 2264288, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f8f97d72000
+mprotect(0x7f8f97d97000, 2093056, PROT_NONE) = 0
+mmap(0x7f8f97f96000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x24000) = 0x7f8f97f96000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\320\16\0\0\0\0\0\0@\0\0\0\0\0\0\0\3101\0\0\0\0\0\0\0\0\0\0@\0008\0\t\0@\0\36\0\35\0\6\0\0\0\5\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0\370\1\0\0\0\0\0\0\370\1\0\0\0\0\0\0\10\0\0\0\0\0\0\0\3\0\0\0\4\0\0\0\200\32\0\0\0\0\0\0\200\32\0\0\0\0\0\0\200\32\0\0\0\0\0\0\34\0\0\0\0\0\0\0\34\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0\1\0\0\0\5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0` \0\0\0\0\0\0` \0\0\0\0\0\0\0\0 \0\0\0\0\0\1\0\0\0\6\0\0\0`-\0\0\0\0\0\0`- \0\0\0\0\0`- \0\0\0\0\0@\3\0\0\0\0\0\0\320\3\0\0\0\0\0\0\0\0 \0\0\0\0\0\2\0\0\0\6\0\0\0\210-\0\0\0\0\0\0\210- \0\0\0\0\0\210- \0\0\0\0\0\20\2\0\0\0\0\0\0\20\2\0\0\0\0\0\0\10\0\0\0\0\0\0\0\4\0\0\0\4\0\0\0008\2\0\0\0\0\0\0008\2\0\0\0\0\0\0008\2\0\0\0\0\0\0D\0\0\0\0\0\0\0D\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0P\345td\4\0\0\0\234\32\0\0\0\0\0\0\234\32\0\0\0\0\0\0\234\32\0\0\0\0\0\0\274\0\0\0\0\0\0\0\274\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0Q\345td\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0R\345td\4\0\0\0`-\0\0\0\0\0\0`- \0\0\0\0\0`- \0\0\0\0\0\240\2\0\0\0\0\0\0\240\2\0\0\0\0\0\0\1\0\0\0\0\0\0\0\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\301\256L\267\31]3zw\243\306\211\5\35\253\2529\200\312\f\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\30\0\0\0\0\0\0\0\33\0\0\0\33\0\0\0\2\0\0\0\7\0\0\0\230\2\21\0\200H\0\4\22\0\0@\203(\10\236\33\0\0\0\0\0\0\0\34\0\0\0\0\0\0\0\0\0\0\0\35\0\0\0\0\0\0\0\36\0\0\0\0\0\0\0\37\0\0\0\0\0\0\0 \0\0\0\0\0\0\0!\0\0\0#\0\0\0$\0\0\0&\0\0\0'\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0(\0\0\0\0\0\0\0\0\0\0\0\353\26\251\30a\257\0\371\301S\200\30\273\25sB\257\304M\17\221!\374\370\6\2\4\371\3733\373\17\371\31sB\372\31sB\225\263_\31\177\236\320\30a\242\222\6", 832) = 832
+fstat(3, {st_mode=S_IFREG|0644, st_size=14664, ...}) = 0
+mmap(NULL, 2109744, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f8f97b6e000
+mprotect(0x7f8f97b71000, 2093056, PROT_NONE) = 0
+mmap(0x7f8f97d70000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000) = 0x7f8f97d70000
+close(3)                                = 0
+access("/etc/ld.so.nohwcap", F_OK)      = -1 ENOENT (No such file or directory)
+open("/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\320\37\2\0\0\0\0\0@\0\0\0\0\0\0\0 \26\34\0\0\0\0\0\0\0\0\0@\0008\0\n\0@\0D\0C\0\6\0\0\0\5\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0000\2\0\0\0\0\0\0000\2\0\0\0\0\0\0\10\0\0\0\0\0\0\0\3\0\0\0\4\0\0\0p\212\30\0\0\0\0\0p\212\30\0\0\0\0\0p\212\30\0\0\0\0\0\34\0\0\0\0\0\0\0\34\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0\1\0\0\0\5\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0T\253\33\0\0\0\0\0T\253\33\0\0\0\0\0\0\0 \0\0\0\0\0\1\0\0\0\6\0\0\0@\267\33\0\0\0\0\0@\267;\0\0\0\0\0@\267;\0\0\0\0\0`Q\0\0\0\0\0\0\200\233\0\0\0\0\0\0\0\0 \0\0\0\0\0\2\0\0\0\6\0\0\0\240\353\33\0\0\0\0\0\240\353;\0\0\0\0\0\240\353;\0\0\0\0\0\340\1\0\0\0\0\0\0\340\1\0\0\0\0\0\0\10\0\0\0\0\0\0\0\4\0\0\0\4\0\0\0p\2\0\0\0\0\0\0p\2\0\0\0\0\0\0p\2\0\0\0\0\0\0D\0\0\0\0\0\0\0D\0\0\0\0\0\0\0\4\0\0\0\0\0\0\0\7\0\0\0\4\0\0\0@\267\33\0\0\0\0\0@\267;\0\0\0\0\0@\267;\0\0\0\0\0\20\0\0\0\0\0\0\0\260\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0P\345td\4\0\0\0\214\212\30\0\0\0\0\0\214\212\30\0\0\0\0\0\214\212\30\0\0\0\0\0\4g\0\0\0\0\0\0\4g\0\0\0\0\0\0\4\0\0\0\0\0\0\0Q\345td\6\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\20\0\0\0\0\0\0\0R\345td\4\0\0\0@\267\33\0\0\0\0\0@\267;\0\0\0\0\0@\267;\0\0\0\0\0\3008\0\0\0\0\0\0\3008\0\0\0\0\0\0\1\0\0\0\0\0\0\0\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\265\0256\36GG\226\257)\336\231\222\267j\227\317\3739\262\247\4\0\0\0\20\0\0\0\1\0\0\0GNU\0\0\0\0\0\2\0\0\0\6\0\0\0\30\0\0\0\0\0\0\0\363\3\0\0\n\0\0\0\0\1\0\0\16\0\0\0\0000\20D\240 \2\1\210\3\346\220\305E\214\0\300\0\10\0\5\200\0`\300\200\0\r\212\f\0\4\20\0\210D2\10.@\210P4, \16\"H&\204\300\214\4\10\0\2\2\16\241\254\32\4f\300\0\3002\0\300\0P\1 \201\10\204\v  ($\0\4 P\0\20X\200\312DB(\0\6\200\20\30B\0 @\200\0\tP\0Q\212@\20\0\0\0\0\10\0\0\21\20", 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=1845024, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f8f981a8000
+mmap(NULL, 3953344, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f8f977a8000
+mprotect(0x7f8f97963000, 2097152, PROT_NONE) = 0
+mmap(0x7f8f97b63000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bb000) = 0x7f8f97b63000
+mmap(0x7f8f97b69000, 17088, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f8f97b69000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f8f981a6000
+arch_prctl(ARCH_SET_FS, 0x7f8f981a6740) = 0
+mprotect(0x7f8f97b63000, 16384, PROT_READ) = 0
+mprotect(0x7f8f97d70000, 4096, PROT_READ) = 0
+mprotect(0x7f8f97f96000, 16384, PROT_READ) = 0
+mprotect(0x6ef000, 4096, PROT_READ)     = 0
+mprotect(0x7f8f981bd000, 4096, PROT_READ) = 0
+munmap(0x7f8f981a9000, 73142)           = 0
+open("/dev/tty", O_RDWR|O_NONBLOCK)     = 3
+close(3)                                = 0
+brk(0)                                  = 0x2682000
+brk(0x2683000)                          = 0x2683000
+open("/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=2919792, ...}) = 0
+mmap(NULL, 2919792, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f8f974df000
+close(3)                                = 0
+brk(0x2684000)                          = 0x2684000
+brk(0x2685000)                          = 0x2685000
+getuid()                                = 0
+getgid()                                = 0
+geteuid()                               = 0
+getegid()                               = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+brk(0x2686000)                          = 0x2686000
+open("/proc/meminfo", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f8f981ba000
+read(3, "MemTotal:        7918676 kB\nMemFree:         5684216 kB\nBuffers:          698008 kB\nCached:          1017152 kB\nSwapCached:            0 kB\nActive:          1049472 kB\nInactive:         774212 kB\nActive(anon):     109196 kB\nInactive(anon):      136 kB\nActive(file):     940276 kB\nInactive(file):   774076 kB\nUnevictable:           0 kB\nMlocked:               0 kB\nSwapTotal:       2096124 kB\nSwapFree:        2096124 kB\nDirty:                 8 kB\nWriteback:             0 kB\nAnonPages:        108508 kB\nMapped:            23828 kB\nShmem:               824 kB\nSlab:             319876 kB\nSReclaimable:     302864 kB\nSUnreclaim:        17012 kB\nKernelStack:        1760 kB\nPageTables:         5280 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     6055460 kB\nCommitted_AS:     320316 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:      288784 kB\nVmallocChunk:   34359443452 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:     22528 kB\nHugePages_Total:       0\nHugePages_Fre", 1024) = 1024
+close(3)                                = 0
+munmap(0x7f8f981ba000, 4096)            = 0
+brk(0x2687000)                          = 0x2687000
+rt_sigaction(SIGCHLD, {SIG_DFL, [], SA_RESTORER|SA_RESTART, 0x7f8f977dec30}, {SIG_DFL, [], 0}, 8) = 0
+rt_sigaction(SIGCHLD, {SIG_DFL, [], SA_RESTORER|SA_RESTART, 0x7f8f977dec30}, {SIG_DFL, [], SA_RESTORER|SA_RESTART, 0x7f8f977dec30}, 8) = 0
+rt_sigaction(SIGINT, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, {SIG_DFL, [], 0}, 8) = 0
+rt_sigaction(SIGINT, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, 8) = 0
+rt_sigaction(SIGQUIT, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, {SIG_DFL, [], 0}, 8) = 0
+rt_sigaction(SIGQUIT, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, 8) = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+rt_sigaction(SIGQUIT, {SIG_IGN, [], SA_RESTORER, 0x7f8f977dec30}, {SIG_DFL, [], SA_RESTORER, 0x7f8f977dec30}, 8) = 0
+uname({sys="Linux", node="Boss", ...})  = 0
+brk(0x2688000)                          = 0x2688000
+brk(0x2689000)                          = 0x2689000
+stat("/root", {st_mode=S_IFDIR|0711, st_size=4096, ...}) = 0
+stat(".", {st_mode=S_IFDIR|0711, st_size=4096, ...}) = 0
+getpid()                                = 12999
+open("/usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=26258, ...}) = 0
+mmap(NULL, 26258, PROT_READ, MAP_SHARED, 3, 0) = 0x7f8f981b4000
+close(3)                                = 0
+brk(0x268a000)                          = 0x268a000
+getppid()                               = 12994
+stat(".", {st_mode=S_IFDIR|0711, st_size=4096, ...}) = 0
+stat("/usr/local/sbin/bash", 0x7fffeaa11ee0) = -1 ENOENT (No such file or directory)
+stat("/usr/local/bin/bash", 0x7fffeaa11ee0) = -1 ENOENT (No such file or directory)
+stat("/usr/sbin/bash", 0x7fffeaa11ee0)  = -1 ENOENT (No such file or directory)
+stat("/usr/bin/bash", 0x7fffeaa11ee0)   = -1 ENOENT (No such file or directory)
+stat("/sbin/bash", 0x7fffeaa11ee0)      = -1 ENOENT (No such file or directory)
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+geteuid()                               = 0
+getegid()                               = 0
+getuid()                                = 0
+getgid()                                = 0
+access("/bin/bash", X_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+geteuid()                               = 0
+getegid()                               = 0
+getuid()                                = 0
+getgid()                                = 0
+access("/bin/bash", R_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+geteuid()                               = 0
+getegid()                               = 0
+getuid()                                = 0
+getgid()                                = 0
+access("/bin/bash", X_OK)               = 0
+stat("/bin/bash", {st_mode=S_IFREG|0755, st_size=1021112, ...}) = 0
+geteuid()                               = 0
+getegid()                               = 0
+getuid()                                = 0
+getgid()                                = 0
+access("/bin/bash", R_OK)               = 0
+brk(0x268b000)                          = 0x268b000
+brk(0x268c000)                          = 0x268c000
+getpgrp()                               = 12994
+rt_sigaction(SIGCHLD, {0x446380, [], SA_RESTORER|SA_RESTART, 0x7f8f977dec30}, {SIG_DFL, [], SA_RESTORER|SA_RESTART, 0x7f8f977dec30}, 8) = 0
+getrlimit(RLIMIT_NPROC, {rlim_cur=61179, rlim_max=61179}) = 0
+brk(0x268d000)                          = 0x268d000
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
+stat("/root", {st_mode=S_IFDIR|0711, st_size=4096, ...}) = 0
+chdir("/root")                          = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [], NULL, 8) = 0
 exit_group(0)                           = ?
 +++ exited with 0 +++
-[1]+  Done                    strace -s 2000 -f -p "$$"
+root@Boss-10:32:55/~#
