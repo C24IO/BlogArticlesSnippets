@@ -1,0 +1,2 @@
+root@Boss-09:37:35/~# echo list=$(ls)
+list=Desktop file-link HISTORY perf.data perf.data.old sdb.blktrace.0 sdb.blktrace.1 sdb.blktrace.2 understand_this.txt
